@@ -1,4 +1,9 @@
 import './App.css';
+import React from 'react'; 
+//import {makeStyles, createStyles, Theme} from '@material-ui/core/styles'; 
+import day from './day'; 
+//import ReactDOM from 'react-dom'; 
+
 
 function App() {
   return (
@@ -7,8 +12,19 @@ function App() {
           TuneIn
         </p>
       <header className="App-header">
+        <div className = 'day'>
+          <p> grid should be here eventually :,) </p>
+          <day /> 
+        </div> 
         <input id ="feeling" />
         <button onClick = {genSongClicked}>New Song :)</button>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+        </a>
       </header>
     </div>
   );

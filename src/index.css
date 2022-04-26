@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.day {
+  font-family: 'Ubuntu'; 
+  font-size: 64 px; 
+}
+
+
