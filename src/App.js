@@ -3,16 +3,12 @@ import './App.css';
 function App() {
   return (
     <div className="App">
+       <p>
+          TuneIn
+        </p>
       <header className="App-header">
         <input id ="feeling" />
         <button onClick = {genSongClicked}>New Song :)</button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
       </header>
     </div>
   );
