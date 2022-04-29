@@ -25,24 +25,27 @@ function App() {
   var element = [];
 
   for (let i in day){
-    element.push((<Col span={4.8}><Card
+    element.push((<Col span={4.8}>
+  <div onClick={event =>  window.location.href=day[i]["image"]}> 
+  <Card
       hoverable
       style={{ width: 240 }}
       cover={<img alt={day[i]["name"]} src={day[i]["image"]}/>}
     >
       <Meta title={day[i]["name"]} description={day[i]["song"]} />
-    </Card></Col>));
+    </Card></div></Col>));
   }
 
 
   return (
     <div className="App">
-       <h1>
+       <h1 className="tunein-logo">
           TuneIn
         </h1>
       <header className="App-header">
-        <div id = "newsong">test
-        </div>
+        <p> 
+          Song of the Day: Link to Song Here??? Like a button and on clicking directs the user to the song 
+        </p>
         <Row gutter={16}>
           {element}
         </Row>
@@ -50,9 +53,11 @@ function App() {
 
           <day /> 
         </div> 
-        <input id ="feeling" />
-        <p>this.state.song</p>
-        <button onClick = {genSongClicked}>New Song!</button>
+        <input className= "input-style" id ="feeling" />
+        <div className="App-button"> 
+          <button className="unstyled-button" onClick = {genSongClicked}>New Song! </button>
+        </div>
+        
       </header>
     </div>
   );
