@@ -1,6 +1,7 @@
 import React from 'react'; 
 import gift from './gift.json'; 
-import {Grid, Row, Col} from 'react-flexbox-grid'; 
+
+// import {Grid, Row, Col} from 'react-flexbox-grid'; 
 
 const day = () => {
     return (
@@ -9,4 +10,5 @@ const day = () => {
         </div>   
     ); 
 }
+
 export default day; 
