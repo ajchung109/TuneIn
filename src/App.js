@@ -26,7 +26,7 @@ function App() {
 
   for (let i in day){
     element.push((<Col span={4.8}>
-  <div onClick={handleClick}> 
+  <div onClick={event =>  window.location.href='https://www.youtube.com/watch?v=QYh6mYIJG2Y'}> 
   <Card
       hoverable
       style={{ width: 240 }}
@@ -99,8 +99,5 @@ function genSong(word, dayToday) {
     });
   }
 
- function handleClick() { 
-   console.log("direct to song of the day")
- } 
 
 export default App;
