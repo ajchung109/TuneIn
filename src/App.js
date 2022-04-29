@@ -13,11 +13,11 @@ const { Meta } = Card;
 function App() {
 
   var day = [
-    { "name": "Monday", "image": "https://i.imgur.com/AD3MbBi.jpeg"},
-    { "name": "Tuesday", "image": "https://i.imgur.com/0LINzxs.jpeg"}, 
-    { "name": "Wednesday", "image": "https://i.imgur.com/eLmmpdR.jpeg"}, 
-    { "name": "Thursday", "image": "https://i.imgur.com/pqggrK0.jpeg"}, 
-    { "name": "Friday", "image": "https://i.imgur.com/jlFgGpe.jpeg" }
+    { "name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So"},
+    { "name": "Tuesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/71bOXHJKHL._SL1400_-1.jpg", "song": "Pharrell Williams - Happy"}, 
+    { "name": "Wednesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/aretha.jpg", "song": "Harry Hudson - Yellow Lights"}, 
+    { "name": "Thursday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/talking-heads.png", "song": "Katy Perry - Part of Me"}, 
+    { "name": "Friday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/NYC-Peech-Boys.jpg", "song": "Taylor Swift - Back to December" }
   ]
 
   var element = [];
@@ -28,7 +28,7 @@ function App() {
       style={{ width: 240 }}
       cover={<img alt={day[i]["name"]} src={day[i]["image"]}/>}
     >
-      <Meta title={day[i]["name"]} description={day[i]["image"]} />
+      <Meta title={day[i]["name"]} description={day[i]["song"]} />
     </Card></Col>));
   }
 
@@ -39,6 +39,9 @@ function App() {
           TuneIn
         </h1>
       <header className="App-header">
+        <p> 
+          Song of the Day: Link to Song Here???
+        </p>
         <Row gutter={16}>
           {element}
         </Row>
@@ -47,7 +50,7 @@ function App() {
           <day /> 
         </div> 
         <input id ="feeling" />
-        <button onClick = {genSongClicked}>New Song :)</button>
+        <button onClick = {genSongClicked}>New Song!</button>
       </header>
     </div>
   );
