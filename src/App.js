@@ -24,13 +24,14 @@ function App() {
 
   for (let i in day){
     element.push((<Col span={4.8}>
+  <div onClick={handleClick}> 
   <Card
       hoverable
       style={{ width: 240 }}
       cover={<img alt={day[i]["name"]} src={day[i]["image"]}/>}
     >
       <Meta title={day[i]["name"]} description={day[i]["song"]} />
-    </Card></Col>));
+    </Card></div></Col>));
   }
 
 
@@ -95,5 +96,9 @@ function genSong(word, dayToday) {
     document.cookie = dayToday + "=" + data.tracks.items[choice].name;
     });
   }
+
+ function handleClick() { 
+   console.log("direct to song of the day")
+ } 
 
 export default App;
