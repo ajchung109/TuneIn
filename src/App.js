@@ -6,6 +6,8 @@ import { Card } from 'antd';
 import { Row, Col } from 'antd';
 
 
+
+
 const { Meta } = Card;
 
 
@@ -51,7 +53,7 @@ function App() {
 
           <day /> 
         </div> 
-        <input id ="feeling" />
+        <input className= "input-style" id ="feeling" />
         <div className="App-button"> 
           <button className="unstyled-button" onClick = {genSongClicked}>New Song! </button>
         </div>
