@@ -26,7 +26,7 @@ function App() {
 
   for (let i in day){
     element.push((<Col span={4.8}>
-  <div onClick={event =>  window.location.href='https://www.youtube.com/watch?v=QYh6mYIJG2Y'}> 
+  <div onClick={event =>  window.location.href=day[i]["image"]}> 
   <Card
       hoverable
       style={{ width: 240 }}
