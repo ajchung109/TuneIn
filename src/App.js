@@ -1,13 +1,13 @@
 import './App.css';
 import React from 'react'; 
-// import {makeStyles, createStyles, Theme} from '@material-ui/core/styles'; 
 import day from './day'; 
 import "antd/dist/antd.css";
 import { Card } from 'antd';
 import { Row, Col } from 'antd';
+
+
 const { Meta } = Card;
 
-//import ReactDOM from 'react-dom'; 
 
 
 function App() {
@@ -23,7 +23,8 @@ function App() {
   var element = [];
 
   for (let i in day){
-    element.push((<Col span={4.8}><Card
+    element.push((<Col span={4.8}>
+  <Card
       hoverable
       style={{ width: 240 }}
       cover={<img alt={day[i]["name"]} src={day[i]["image"]}/>}
@@ -35,12 +36,12 @@ function App() {
 
   return (
     <div className="App">
-       <h1>
+       <h1 className="tunein-logo">
           TuneIn
         </h1>
       <header className="App-header">
         <p> 
-          Song of the Day: Link to Song Here???
+          Song of the Day: Link to Song Here??? Like a button and on clicking directs the user to the song 
         </p>
         <Row gutter={16}>
           {element}
@@ -50,7 +51,10 @@ function App() {
           <day /> 
         </div> 
         <input id ="feeling" />
-        <button onClick = {genSongClicked}>New Song!</button>
+        <div className="App-button"> 
+          <button className="unstyled-button" onClick = {genSongClicked}>New Song! </button>
+        </div>
+        
       </header>
     </div>
   );
@@ -91,6 +95,5 @@ function genSong(word, dayToday) {
     document.cookie = dayToday + "=" + data.tracks.items[choice].name;
     });
   }
-
 
 export default App;
