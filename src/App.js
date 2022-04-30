@@ -1,38 +1,43 @@
 import './App.css';
 import React from 'react'; 
-import day from './day'; 
 import "antd/dist/antd.css";
 import { Card } from 'antd';
 import { Row, Col } from 'antd';
-
+import { useEffect, useState } from "react";
 
 
 
 const { Meta } = Card;
 
-
+  var day = [
+    { "name": "Monday", "image": "", "song": "", "song-link": ""},
+    { "name": "Tuesday", "image": "", "song": "", "song-link": ""}, 
+    { "name": "Wednesday", "image": "", "song": "", "song-link": ""}, 
+    { "name": "Thursday", "image": "", "song": "", "song-link": ""},
+    { "name": "Friday", "image": "", "song": "", "song-link": ""}
+  ]
 
 function App() {
   
-  var day = [
-    { "name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"},
-    { "name": "Tuesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/71bOXHJKHL._SL1400_-1.jpg", "song": "Pharrell Williams - Happy", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
-    { "name": "Wednesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/aretha.jpg", "song": "Harry Hudson - Yellow Lights", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
-    { "name": "Thursday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/talking-heads.png", "song": "Katy Perry - Part of Me", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
-    { "name": "Friday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/NYC-Peech-Boys.jpg", "song": "Taylor Swift - Back to December", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}
-  ]
+  // var day = [
+  //   { "name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"},
+  //   { "name": "Tuesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/71bOXHJKHL._SL1400_-1.jpg", "song": "Pharrell Williams - Happy", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
+  //   { "name": "Wednesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/aretha.jpg", "song": "Harry Hudson - Yellow Lights", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
+  //   { "name": "Thursday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/talking-heads.png", "song": "Katy Perry - Part of Me", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
+  //   { "name": "Friday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/NYC-Peech-Boys.jpg", "song": "Taylor Swift - Back to December", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}
+  // ]
+
 
   var element = [];
-
-  for (let i in day){
+  for (var i in day){
     element.push((<Col span={4.8}>
   <div onClick={event =>  window.location.href=day[i]["song-link"]}> 
   <Card
       hoverable
       style={{ width: 240 }}
-      cover={<img alt={day[i]["name"]} src={day[i]["image"]}/>}
+      cover={<img alt={day[i].song} src={day[i].image}/>}
     >
-      <Meta title={day[i]["name"]} description={day[i]["song"]} />
+      <Meta title={day[i].name} description={day[i].song} />
     </Card></div></Col>));
   }
 
@@ -48,7 +53,7 @@ function App() {
         </Row>
         <div className = 'day'>
 
-          <day /> 
+          <div /> 
         </div> 
         <input className= "input-style" id ="feeling" />
         <div className="App-button"> 
@@ -60,19 +65,16 @@ function App() {
   );
 }
 
-const token = 'BQDw7PECV2LmfpJTJkTCGRrk-w8nFpquCVCuYTMAK5NA66e2KwrMRfbKUKmr6G08eVOvzkgTGppPDULVfuQNiHOrDI6fHbwSIIFWK97MKQZPpJFSMhZZMysxxMiyPzm_iRUG0_yjIJaSlfTwF0zR5ics_pbqWgA9nk6yQ7ORTYX1nZmo-6_ZVXzMehk';
+const token = "BQDacqzIXxmAwjnCIeYf4PDZfhAJNntziTAQystvhotdesSf7oRBiUpC65dPx-YkHA33Ei0fnhceLel7Ex1q7Je7VqU70y6d71E18QQtfUZNhtVUsa9_6amqYfczs0FDe0OHTuKuOriIkHvLmj4PMFeQUj-83lLQX9n5fk_N_grp7Fs";
 
 function genSongClicked() {
   const dayToday = checkDay();
   const word = document.getElementById('feeling').value;
-  genSong(word,dayToday); 
- 
-  // if (dayToday != false){
-  //   const word = document.getElementById('feeling').value;
-  //   genSong(word, dayToday);
-  // } else {
-  //   alert("A song has already been generated for today.")
-  // }
+  if (dayToday != false){
+    genSong(word, dayToday);
+  } else {
+    alert("A song has already been generated for today.");
+  }
  }
 
 function checkDay() { 
@@ -90,10 +92,19 @@ function genSong(word, dayToday) {
     })
     .then(response => response.json())
     .then((data) => {
-      
-       console.log(data.tracks.items[0].external_urls.spotify);
-      
+      var choice = Math.floor(Math.random() * data.tracks.items.length);
+      var curTrack = data.tracks.items[choice];
+      var curTrackJson = {
+        name: curTrack.name,
+        artist: curTrack.artists[0].name,
+        url: curTrack.external_urls.spotify,
+        image: curTrack.album.images[0].url
+      };
+      document.cookie = dayToday + "=" + JSON.stringify(curTrackJson);
     });
+    return;
+  }
+
   // data.tracks.items[0].external_urls.spotify
   // document.cookie = dayToday + "=starships"
   // console.log(document.cookie)
@@ -128,8 +139,5 @@ function genSong(word, dayToday) {
     // let container = document.querySelector('div'); 
     // let head = container.querySelector('header'); 
     // container.insertBefore(newDiv,currentDiv ); 
-    
-  }
-
 
 export default App;
