@@ -10,12 +10,25 @@ import { useEffect, useState } from "react";
 const { Meta } = Card;
 
   var day = [
-    { "name": "Monday", "image": "", "song": "", "song-link": ""},
-    { "name": "Tuesday", "image": "", "song": "", "song-link": ""}, 
-    { "name": "Wednesday", "image": "", "song": "", "song-link": ""}, 
-    { "name": "Thursday", "image": "", "song": "", "song-link": ""},
-    { "name": "Friday", "image": "", "song": "", "song-link": ""}
+    {"name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So", "songlink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"},
+    { "name": "Tuesday", "image": "", "song": "", "songlink": ""}, 
+    { "name": "Wednesday", "image": "", "song": "", "songlink": ""}, 
+    { "name": "Thursday", "image": "", "song": "", "songlink": ""},
+    { "name": "Friday", "image": "", "song": "", "songlink": ""}
   ]
+
+  // var element = [];
+  // for (var i in day){
+  //   element.push((<Col span={4.8}>
+  // <div onClick={event =>  window.location.href=day[i]["song-link"]}> 
+  // <Card
+  //     hoverable
+  //     style={{ width: 240 }}
+  //     cover={<img alt={day[i]["song"]} src={day[i]["image"]}/>}
+  //   >
+  //     <Meta title={day[i]["name"]} description={day[i]["song"]} />
+  //   </Card></div></Col>));
+  // }
 
 function App() {
   
@@ -31,7 +44,7 @@ function App() {
   var element = [];
   for (var i in day){
     element.push((<Col span={4.8}>
-  <div onClick={event =>  window.location.href=day[i]["song-link"]}> 
+  <div onClick={event =>  window.location.href=day[i].songlink}> 
   <Card
       hoverable
       style={{ width: 240 }}
