@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react" 
 
-const UsingFetch = () => {
+const UsingFetch () {
     const token = 'BQA-RLY01rNc4qL6K8_dfvQscCZ2oUbXzbDJiDppeyeRvu5o903p3xjuEWJpCWpz8WF-pu6EBhvQBLThikfZ3YsBxQCUXrb48t6ta_ohXqtDzHH8krDODbx_whEg3i2m2UE-l2frheb-ptLesvzqhaCOyK_-kI2PufzujjdVxqjOf0AdCwaOhySU2vs';
-    const [song, setSong] = useState([])
+    const [song, setSong] = useState(0)
     const word = document.getElementById('feeling').value;
 
     const fetchSong = () => {

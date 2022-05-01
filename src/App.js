@@ -9,23 +9,23 @@ import { useEffect, useState } from "react";
 
 const { Meta } = Card;
 
-  var day = [
-    { "name": "Monday", "image": "", "song": "", "song-link": ""},
-    { "name": "Tuesday", "image": "", "song": "", "song-link": ""}, 
-    { "name": "Wednesday", "image": "", "song": "", "song-link": ""}, 
-    { "name": "Thursday", "image": "", "song": "", "song-link": ""},
-    { "name": "Friday", "image": "", "song": "", "song-link": ""}
-  ]
+  // var day = [
+  //   { "name": "Monday", "image": "", "song": "", "song-link": ""},
+  //   { "name": "Tuesday", "image": "", "song": "", "song-link": ""}, 
+  //   { "name": "Wednesday", "image": "", "song": "", "song-link": ""}, 
+  //   { "name": "Thursday", "image": "", "song": "", "song-link": ""},
+  //   { "name": "Friday", "image": "", "song": "", "song-link": ""}
+  // ]
 
 function App() {
   
-  // var day = [
-  //   { "name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"},
-  //   { "name": "Tuesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/71bOXHJKHL._SL1400_-1.jpg", "song": "Pharrell Williams - Happy", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
-  //   { "name": "Wednesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/aretha.jpg", "song": "Harry Hudson - Yellow Lights", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
-  //   { "name": "Thursday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/talking-heads.png", "song": "Katy Perry - Part of Me", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
-  //   { "name": "Friday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/NYC-Peech-Boys.jpg", "song": "Taylor Swift - Back to December", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}
-  // ]
+  var day = [
+    { "name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"},
+    { "name": "Tuesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/71bOXHJKHL._SL1400_-1.jpg", "song": "Pharrell Williams - Happy", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
+    { "name": "Wednesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/aretha.jpg", "song": "Harry Hudson - Yellow Lights", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
+    { "name": "Thursday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/talking-heads.png", "song": "Katy Perry - Part of Me", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
+    { "name": "Friday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/NYC-Peech-Boys.jpg", "song": "Taylor Swift - Back to December", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}
+  ]
 
 
   var element = [];
@@ -65,7 +65,7 @@ function App() {
   );
 }
 
-const token = "BQDacqzIXxmAwjnCIeYf4PDZfhAJNntziTAQystvhotdesSf7oRBiUpC65dPx-YkHA33Ei0fnhceLel7Ex1q7Je7VqU70y6d71E18QQtfUZNhtVUsa9_6amqYfczs0FDe0OHTuKuOriIkHvLmj4PMFeQUj-83lLQX9n5fk_N_grp7Fs";
+const token = "BQBpnA2J3LDyB2LrDsUngv9JWMPzd2X8Bz2vFeOfGozv8rhfqei4PG3OUUS5tg8uRRhnbHcC10lTDbaaXP5w1L1XBFiKUqC-kzz7oQ5U3wusLnHCx-bgaUYzKe3uz6R_3iTlg2I6c0TqEcMMRpDGxWH0O7fEvqHRKp4dKXS7XBoks--ATjqDJCkfkmo";
 
 function genSongClicked() {
   const dayToday = checkDay();
@@ -75,6 +75,8 @@ function genSongClicked() {
   } else {
     alert("A song has already been generated for today.");
   }
+
+
  }
 
 function checkDay() { 
