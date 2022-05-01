@@ -9,13 +9,13 @@ import { useEffect, useState } from "react";
 
 const { Meta } = Card;
 
-  var day = [
-    {"name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So", "songlink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"},
-    { "name": "Tuesday", "image": "", "song": "", "songlink": ""}, 
-    { "name": "Wednesday", "image": "", "song": "", "songlink": ""}, 
-    { "name": "Thursday", "image": "", "song": "", "songlink": ""},
-    { "name": "Friday", "image": "", "song": "", "songlink": ""}
-  ]
+  // var day = [
+  //   {"name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So", "songlink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"},
+  //   { "name": "Tuesday", "image": "", "song": "", "songlink": ""}, 
+  //   { "name": "Wednesday", "image": "", "song": "", "songlink": ""}, 
+  //   { "name": "Thursday", "image": "", "song": "", "songlink": ""},
+  //   { "name": "Friday", "image": "", "song": "", "songlink": ""}
+  // ]
 
   // var element = [];
   // for (var i in day){
@@ -33,18 +33,18 @@ const { Meta } = Card;
 function App() {
   
   var day = [
-    { "name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"},
-    { "name": "Tuesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/71bOXHJKHL._SL1400_-1.jpg", "song": "Pharrell Williams - Happy", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
-    { "name": "Wednesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/aretha.jpg", "song": "Harry Hudson - Yellow Lights", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
-    { "name": "Thursday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/talking-heads.png", "song": "Katy Perry - Part of Me", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
-    { "name": "Friday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/NYC-Peech-Boys.jpg", "song": "Taylor Swift - Back to December", "song-link": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}
+    { "name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So", "song-ink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"},
+    { "name": "Tuesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/71bOXHJKHL._SL1400_-1.jpg", "song": "Pharrell Williams - Happy", "songlink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
+    { "name": "Wednesday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/aretha.jpg", "song": "Harry Hudson - Yellow Lights", "songlink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
+    { "name": "Thursday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/talking-heads.png", "song": "Katy Perry - Part of Me", "songlink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
+    { "name": "Friday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/NYC-Peech-Boys.jpg", "song": "Taylor Swift - Back to December", "songlink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}
   ]
 
 
   var element = [];
   for (var i in day){
     element.push((<Col span={4.8}>
-  <div onClick={event =>  window.location.href=day[i].songlink}> 
+  <div onClick={event => window.location.href=day[i].songlink}> 
   <Card
       hoverable
       style={{ width: 240 }}
