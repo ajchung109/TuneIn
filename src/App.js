@@ -1,104 +1,46 @@
 import './App.css';
 import React from 'react'; 
-import "antd/dist/antd.css";
-import { Card } from 'antd';
-import { Row, Col } from 'antd';
 import { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.css';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import {Card} from 'react-bootstrap';
+import { Checkbox } from 'antd';
 
-
-
-const { Meta } = Card;
-
-
-var x = ""
-var y = ""
-
-  // var day = [
-  //   {"name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "DojaCat - Say So", "songlink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"},
-  //   { "name": "Tuesday", "image": "", "song": "", "songlink": ""}, 
-  //   { "name": "Wednesday", "image": "", "song": "", "songlink": ""}, 
-  //   { "name": "Thursday", "image": "", "song": "", "songlink": ""},
-  //   { "name": "Friday", "image": "", "song": "", "songlink": ""}
-  // ]
 
 function App() {
   
-  var day = [
-    { "name": "Monday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/strokes.jpg?w=682", "song": "The Strokes - The Adults are Talking", "songlink": "https://open.spotify.com/album/2xkZV2Hl1Omi8rk2D7t5lN?highlight=spotify:track:5ruzrDWcT0vuJIOMW7gMnW"},
-    { "name": "Tuesday", "image": "https://i1.sndcdn.com/artworks-000069755023-k1kc7q-t500x500.jpg", "song": "Pharrell Williams - Happy", "songlink": "https://open.spotify.com/album/0lrmy4pJINsFzycJvttX2W"}, 
-    { "name": "Wednesday", "image": "https://images.surfacemag.com/app/uploads/2022/03/29123410/harry-styles-harrys-house.jpg", "song": "Harry Styles - As It Was", "songlink": "https://wwwhttps://open.spotify.com/album/2pqdSWeJVsXAhHFuVLzuA8.youtube.com/watch?v=QYh6mYIJG2Y"}, 
-    { "name": "Thursday", "image": "https://m.media-amazon.com/images/I/71o97DFZzdL._SS500_.jpg", "song": "Katy Perry - Part of Me", "songlink": "https://open.spotify.com/track/1nZzRJbFvCEct3uzu04ZoL"}, 
-    { "name": "Friday", "image": "Surprise!", "song": "Surprise!", "songlink": "Surprise!"}
-    // { "name": "Friday", "image": "https://i.scdn.co/image/ab67616d00001e02563151cc3a0528d8228998c8", "song": "Taylor Swift - Red", "songlink": "https://open.spotify.com/album/6x9s2ObPdpATZgrwxsk9c0"}
-  ]
+    const [day, setDay] = useState([
+    {"dayName": "Monday", "songName": "", "songArtist": " ", "songLink": ""},
+    { "dayName": "Tuesday", "songName": "", "songArtist": " ", "songLink": ""}, 
+    { "dayName": "Wednesday", "songName": "", "songArtist": " ", "songLink": ""}, 
+    { "dayName": "Thursday", "songName": "", "songArtist": " ", "songLink": ""},
+    { "dayName": "Friday", "songName": "", "songArtist": " ", "songLink": ""}
+  ]);
 
-
-  var element = [];
-    for (var i in day){
-      element.push((<Col span={4.8}>
-    <div onClick={redirectPage}> 
-    <Card
-        hoverable
-        style={{ width: 240 }}
-        cover={<img alt={day[i].song} src={day[i].image}/>}
-      >
-        <Meta title={day[i].name} description={day[i].song}/>
-      </Card></div></Col>));
-    }
-
-  
-  function redirectPage() { 
-    let newPage = x;
-    day[0].song = y;
-    console.log(day[0].song);
-    window.location.href= newPage;
-  }
-
-
-  return (
-    <div className="App">
-       <h1 className="tunein-logo">
-          TuneIn
-        </h1>
-      <header className="App-header">
-        <Row gutter={16}>
-          {element}
-        </Row>
-        <div className = 'day'>
-
-          <div /> 
-        </div> 
-        <input className= "input-style" id ="feeling" />
-        <div className="App-button"> 
-          <button className="unstyled-button" onClick = {genSongClicked}>New Song! </button>
-        </div>
-        
-      </header>
-    </div>
-  );
-}
-
-const token = "BQAJ1TgbwXvUGos21ZyGNEmv21jb9eBtwoXHJzX_4Q5se9tYuxb3PvK2FTh2BXAUaWRz7ic0C7jYDPPGLh4EFnE_OX6AwiQguXV47S6X4EuuEs8YkwLAZlCULEFUmAduYondleKzGpZ5bzDUxQdvLgk1AEaM";
+  const token = "BQAn4gHDG8HJSNcvaU3XWz4uihzD2HOQrfEkB5AIA6Vj88j-YRrT5Vx_WSNy_pHbMca2tNimmcE2q9bwg4BIKAEwfbGYkhjMdid7bcGNPl-0OBPNfevt7cR-qgx0SAmvBv747pj4x-OE3DveeqKRk0SiH2MbNbky529GMDA5ex8xGcM";
 
 function genSongClicked() {
-  const dayToday = checkDay();
-  const word = document.getElementById('feeling').value;
+  var field = document.getElementById('feeling').value;
+  field = field.replace(" ", "");
+  field = field.split(",");
+  const curDay = field[1];
+  const word = field[0];
+  const dayToday = checkDay(curDay);
  if (dayToday != false){
     genSong(word, dayToday);
    } 
     else {
     alert("A song has already been generated for today.");
   }
-
-
  }
 
-function checkDay() { 
-  const dayToday = new Date().toLocaleString('default', {weekday: 'long'});
-  if (document.cookie.includes(dayToday)){
+function checkDay(curDay) { 
+  // const dayToday = new Date().toLocaleString('default', {weekday: 'long'});
+  if (document.cookie.includes(curDay)){
     return false;
   } 
-  return dayToday;
+  return curDay;
 }
 
 function genSong(word, dayToday) {
@@ -111,19 +53,104 @@ function genSong(word, dayToday) {
       var choice = Math.floor(Math.random() * data.tracks.items.length);
       var curTrack = data.tracks.items[choice];
       var curTrackJson = {
-        name: curTrack.name,
-        artist: curTrack.artists[0].name,
-        url: curTrack.external_urls.spotify,
-        image: curTrack.album.images[0].url
+        dayName: dayToday,
+        songName: curTrack.name,
+        songArtist: curTrack.artists[0].name,
+        songLink: curTrack.external_urls.spotify,
       };
       document.cookie = dayToday + "=" + JSON.stringify(curTrackJson);
-      x = curTrackJson.url;
-      y = curTrackJson.artist;
-      console.log(x);
-      console.log(y);
+      const dayHash = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4};
+      day[dayHash[dayToday]] = curTrackJson;
+      const temp = [...day];
+      setDay(temp);
     });
-    return;
   }
+
+  // if (document.cookie != ""){
+  //   var cookieStuff = decodeURIComponent(document.cookie);
+  //   cookieStuff = cookieStuff.split("=");
+  //   var pointer = 0;
+  //   const hey = JSON.stringify(cookieStuff[1]);
+  //   console.log("hey", hey.dayName);
+  //   const dayHash = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4};
+  //   while (pointer < cookieStuff.length){
+  //     day[dayHash[cookieStuff[pointer]]] = cookieStuff[pointer + 1];
+  //     pointer += 2;
+  //   }
+  //   console.log(day);
+  // }
+
+  return (
+    <div style={{ display: 'block', padding: 30, width: '100%' }}>
+        <h4>Tune In</h4>
+        <Row id = "update">
+            <Card style={{ width: '15rem' }}>
+              <Card.Body>
+              <Card.Title>{day[0].dayName}</Card.Title>
+              <Card.Text>
+              {day[0].songName}<br/>
+              {day[0].songArtist}<br/>
+              {day[0].songLink}<br/>
+              </Card.Text>
+            </Card.Body>
+            <Card.Img variant="top" src="holder.js/100px180" />
+          </Card>
+          
+          <Card style={{ width: '15rem' }}>
+              <Card.Body>
+              <Card.Title>{day[1].dayName}</Card.Title>
+              <Card.Text>
+              {day[1].songName}<br/>
+              {day[1].songArtist}<br/>
+              {day[1].songLink}<br/>
+              </Card.Text>
+            </Card.Body>
+            <Card.Img variant="top" src="holder.js/100px180" />
+          </Card>
+
+          <Card style={{ width: '15rem' }}>
+              <Card.Body>
+              <Card.Title>{day[2].dayName}</Card.Title>
+              <Card.Text>
+                {day[2].songName}<br/>
+                {day[2].songArtist}<br/>
+                {day[2].songLink}<br/>
+              </Card.Text>
+            </Card.Body>
+            <Card.Img variant="top" src="holder.js/100px180" />
+          </Card>
+
+          <Card style={{ width: '15rem' }}>
+              <Card.Body>
+              <Card.Title>{day[3].dayName}</Card.Title>
+              <Card.Text>
+                {day[3].songName}<br/>
+                {day[3].songArtist}<br/>
+                {day[3].songLink}<br/>
+              </Card.Text>
+            </Card.Body>
+            <Card.Img variant="top" src="holder.js/100px180" />
+          </Card>
+
+          <Card style={{ width: '15rem' }}>
+              <Card.Body>
+              <Card.Title>{day[4].dayName}</Card.Title>
+              <Card.Text>
+              {day[4].songName}<br/>
+              {day[4].songArtist}<br/>
+              {day[4].songLink}<br/>
+              </Card.Text>
+            </Card.Body>
+            <Card.Img variant="top" src="holder.js/100px180" />
+          </Card>
+        </Row>
+        <input className= "input-style" id ="feeling" />
+        <button onClick={() => {genSongClicked();}}>Generate Song!</button>
+      </div>
+    );
+}
+
+
 
   // data.tracks.items[0].external_urls.spotify
   // document.cookie = dayToday + "=starships"
