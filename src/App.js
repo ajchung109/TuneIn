@@ -18,7 +18,7 @@ function App() {
     { "dayName": "Friday", "songName": "", "songArtist": " ", "songLink": ""}
   ]);
 
-  const token = "BQAn4gHDG8HJSNcvaU3XWz4uihzD2HOQrfEkB5AIA6Vj88j-YRrT5Vx_WSNy_pHbMca2tNimmcE2q9bwg4BIKAEwfbGYkhjMdid7bcGNPl-0OBPNfevt7cR-qgx0SAmvBv747pj4x-OE3DveeqKRk0SiH2MbNbky529GMDA5ex8xGcM";
+  const token = "BQDIGIsP9AJEkNrZEPo4bQYNG24tcnuo5-dUHKAkwuJaInxXB-vMMawuMEJeaA0b3pcsNDOWm8zwlu7Z0el49tCIowlD2-NZE9K5xhIEY_YeKm_VqjWlJ7kaewMKRnmy7yNSf69IZ6ihbXQlanXeREqsNvMALpqLwNlo9l2Wygp_XBQ";
 
 function genSongClicked() {
   var field = document.getElementById('feeling').value;
@@ -81,71 +81,73 @@ function genSong(word, dayToday) {
   // }
 
   return (
-    <div style={{ display: 'block', padding: 30, width: '100%' }}>
-        <h4>Tune In</h4>
+    <div className = "body">
+        <h4 class = "App-header">Tune In</h4>
         <Row id = "update">
-            <Card style={{ width: '15rem' }}>
+            <Card class = 'cards' style={{ width: '15rem' }}>
               <Card.Body>
               <Card.Title>{day[0].dayName}</Card.Title>
               <Card.Text>
               {day[0].songName}<br/>
               {day[0].songArtist}<br/>
-              {day[0].songLink}<br/>
+              <a href = {day[0].songLink}>SongLink</a><br/>
               </Card.Text>
             </Card.Body>
             <Card.Img variant="top" src="holder.js/100px180" />
           </Card>
           
-          <Card style={{ width: '15rem' }}>
+          <Card class = 'cards' style={{ width: '15rem' }}>
               <Card.Body>
               <Card.Title>{day[1].dayName}</Card.Title>
               <Card.Text>
               {day[1].songName}<br/>
               {day[1].songArtist}<br/>
-              {day[1].songLink}<br/>
+              <a href = {day[1].songLink}><img src = 'images/spotifyCode.jpg'/></a><br/>
               </Card.Text>
             </Card.Body>
             <Card.Img variant="top" src="holder.js/100px180" />
           </Card>
 
-          <Card style={{ width: '15rem' }}>
+          <Card class = 'cards' style={{ width: '15rem' }}>
               <Card.Body>
               <Card.Title>{day[2].dayName}</Card.Title>
               <Card.Text>
                 {day[2].songName}<br/>
                 {day[2].songArtist}<br/>
-                {day[2].songLink}<br/>
+                <a href = {day[2].songLink}>SongLink</a><br/>
               </Card.Text>
             </Card.Body>
             <Card.Img variant="top" src="holder.js/100px180" />
           </Card>
 
-          <Card style={{ width: '15rem' }}>
+          <Card class = 'cards' style={{ width: '15rem' }}>
               <Card.Body>
               <Card.Title>{day[3].dayName}</Card.Title>
               <Card.Text>
                 {day[3].songName}<br/>
                 {day[3].songArtist}<br/>
-                {day[3].songLink}<br/>
+                <a href = {day[3].songLink}>SongLink</a><br/>
               </Card.Text>
             </Card.Body>
             <Card.Img variant="top" src="holder.js/100px180" />
           </Card>
 
-          <Card style={{ width: '15rem' }}>
+          <Card class = 'cards' style={{ width: '15rem' }}>
               <Card.Body>
               <Card.Title>{day[4].dayName}</Card.Title>
               <Card.Text>
               {day[4].songName}<br/>
               {day[4].songArtist}<br/>
-              {day[4].songLink}<br/>
+              <a href = {day[4].songLink}>SongLink</a><br/>
               </Card.Text>
             </Card.Body>
             <Card.Img variant="top" src="holder.js/100px180" />
           </Card>
         </Row>
-        <input className= "input-style" id ="feeling" />
-        <button onClick={() => {genSongClicked();}}>Generate Song!</button>
+        <div className = "bottomRow"> 
+          <input className= "input-style" id ="feeling" /> 
+        <button className = "genButton" onClick={() => {genSongClicked();}}>Generate Song!</button>
+        </div>
       </div>
     );
 }
