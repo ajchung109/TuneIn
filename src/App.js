@@ -19,28 +19,33 @@ function App() {
     { "name": "Thursday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/talking-heads.png", "song": "Katy Perry - Part of Me", "songlink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}, 
     { "name": "Friday", "image": "https://www.artnews.com/wp-content/uploads/2020/04/NYC-Peech-Boys.jpg", "song": "Taylor Swift - Back to December", "songlink": "https://www.youtube.com/watch?v=QYh6mYIJG2Y"}
   ]
-  
- 
+
+  loadCookies(); 
+
+  function loadCookies(){
   let x = document.cookie;   
   let decodeCookie = decodeURIComponent(x); 
   let ca= decodeCookie.split(';'); 
   let cookieDict = getCookieDict(ca);   
   for(var i in day){  
     let e = day[i]; 
-    let weekday = e.name;     
+    let weekday = e.name;   
     if(weekday in cookieDict){
       let info = cookieDict[weekday]; 
       e.songlink = info['url'];  
       e.image = info['image']; 
-      e.song = info['artist'] + " - "+info['name']; 
+      e.song = info['artist'] + " - "+ info['name']; 
     }
   }
+  }
+  
+
   function getCookieDict(cList){
     var dict = {}; 
     for(let i = 0; i < cList.length; i++){
       var set = cList[i]; 
       var s = set.split("="); 
-      var d = s[0]; 
+      var d = s[0].replace(" ", ""); 
       var info = JSON.parse(s[1]); 
       dict[d] = info; 
     }
@@ -65,15 +70,14 @@ function App() {
   function updateSong(){
     const d = new Date().toLocaleString('default', {weekday: 'long'});
     const today = d.replace(" ", ""); 
-    let x = document.cookie;   
-    console.log(x); 
+    let x = document.cookie;    
     let decodeCookie = decodeURIComponent(x); 
     let ca= decodeCookie.split(';'); 
     let song = getInfo(today, ca);  
     for(var i in day){  
       let el = day[i]; 
       let weekday = el.name;     
-      if(el.name == today){
+      if(el.name == today){ 
         el.songlink = song['url'];  
         el.image = song['image']; 
         el.song = song['artist'] + " - "+song['name']; 
@@ -84,7 +88,7 @@ function App() {
 
   function resetCom (){
   var element = [];
-  for (var i in day){
+  for (var i in day){ 
     element.push((<Col span={4.8}>
   <div onClick={event => window.location.href=day[i].songlink}> 
   <Card
@@ -95,30 +99,18 @@ function App() {
       <Meta title={day[i].name} description={day[i].song} />
     </Card></div></Col>));
   }
-  console.log(element); 
   setEl(element); 
- 
-  // const row = document.createElement("row");
-  // row.nodeValue = element;   
-  // row.setAttribute("id", "songs"); 
-  // row.setAttribute("gutter", 16); 
-  // const p = document.getElementById("songs"); 
-  // p.replaceWith(row); 
-    // var newEl = document.createElement("row");  
-    // newEl.setAttribute("id", "songs"); 
-    // newEl.setAttribute("gutter", 16); 
-    // newEl.innerHTML = {element};   
-    // var replace= document.getElementById ("h1");  
-    // replace.replaceChild(newEl, replace.childNode[0]); 
   }
 
-  function getInfo(day, cookieList){
+  function getInfo(day, cookieList){ 
     for(let i = 0; i < cookieList.length; i++){
       let c= cookieList[i];  
-      if(c.indexOf(day)==0){
-        var found = c.substring(day.length+1, c.length);
-        found = JSON.parse(found); 
-        return found; 
+      let elements = c.split("="); 
+      let thisDay = elements[0].replace(" ", "");  
+      if(day == thisDay){
+        var found = elements[1]; 
+        var f = JSON.parse(found);  
+        return f; 
       }
     }
     return ""; 
@@ -150,7 +142,7 @@ function App() {
   );
 }
 
-const token = "BQCljMrkZKQt1Uf8JVPXuxhuihhmjAAQumoO7EClfrjfcWZXcoexbcffwNN-2xXS78J8V5rD9-RGeffyfdPwk8D5ZBLPMyUIXtcaQrbN6Yisd7UxF1UUDeNpl5yb-OdiKz1owq2oo6QXUSBfe8QPGCQ1PNNm9EJbcjhcBwzBFVQIGgotqqP3V1nsP7Y";
+const token = "BQCSr0wS0hRcVD2svGpG0xThfBA3Mod0VgC6YFt7OAV34e_o4D_ZbaQmGg2BSRndAvTWRupl5F1tnVvqiNXgo9Nw7PSrc1uREmsa2MtUQKlizX-GQhAcmc_BdsEdKUtIiHbUYdVUh_Rndrc2DLwQWzsgl26krfl7PR6Vcaf75CB0odlXCECGY7X5zgg";
 
 function genSongClicked() {
   // const dayToday = checkDay();
@@ -189,9 +181,6 @@ function genSong(word, dayToday) {
         url: curTrack.external_urls.spotify,
         image: curTrack.album.images[0].url
       };
-      // var c=dayToday + "=" + curTrack.external_urls.spotify + ";"; 
-      // document.cookie = c; 
-      
       document.cookie = dayToday + "=" + JSON.stringify(curTrackJson) + ";"; 
     });
     return;
