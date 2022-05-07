@@ -17,8 +17,39 @@ function App() {
     { "dayName": "Thursday", "songName": "", "songArtist": " ", "songLink": ""},
     { "dayName": "Friday", "songName": "", "songArtist": " ", "songLink": ""}
   ]);
+  const token = "BQABKIsUyoZpLd7OnnCfURugU71ywpK1atnf5zufl1c-JnGitzABmRUEWefnhtzTNEpaOFqYFnaBGphyqFw_Xv-djcfyMqoi71qzPsYiLr5XyDd6XbX1L62dQK-Gq_3tOghwJv7zbght1XExpDebZQxb2EAeZZiJmlp2DzMiIu2zEDi6go4a60Dp0oA";
+  loadCookies(); 
 
-  const token = "BQDIGIsP9AJEkNrZEPo4bQYNG24tcnuo5-dUHKAkwuJaInxXB-vMMawuMEJeaA0b3pcsNDOWm8zwlu7Z0el49tCIowlD2-NZE9K5xhIEY_YeKm_VqjWlJ7kaewMKRnmy7yNSf69IZ6ihbXQlanXeREqsNvMALpqLwNlo9l2Wygp_XBQ";
+  function loadCookies() {
+    let x = document.cookie; 
+    console.log(x); 
+    let decodeCookie = decodeURIComponent(x); 
+    let splitCookie = decodeCookie.split(";"); 
+    let cookieDict = getCookieDict(splitCookie); 
+    for (var i in day){
+      let el = day[i]; 
+      let weekday = el.dayName; 
+      if (weekday in cookieDict){
+        let info = cookieDict[weekday];
+        el.songlink = info['songlink']; 
+        el.songName = info['songName'] + "-" + info['songArtist']; 
+      }
+       
+    } 
+
+  }
+
+  function getCookieDict(splitCookie){
+    var dict = {};
+    for (let i = 0; i < splitCookie.length; i++){
+      var set = splitCookie[i];
+      var splitSet = set.split("="); 
+      var day = splitSet[0].replace(" ", ""); 
+      var info = JSON.parse(splitSet[1]); 
+      dict[day] = info;  
+    } 
+    return dict; 
+  }
 
 function genSongClicked() {
   var field = document.getElementById('feeling').value;
