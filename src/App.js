@@ -31,7 +31,9 @@ function App() {
       let weekday = el.dayName; 
       if (weekday in cookieDict){
         let info = cookieDict[weekday];
-        el.songlink = info['songlink']; 
+        console.log(info);  
+        el.songLink = info['songLink']; 
+
         el.songName = info['songName'] + "-" + info['songArtist']; 
       }
        
