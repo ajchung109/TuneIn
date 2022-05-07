@@ -11,18 +11,21 @@ import { Checkbox } from 'antd';
 function App() {
   
     const [day, setDay] = useState([
-    {"dayName": "Monday", "songName": "", "songArtist": " ", "songLink": ""},
-    { "dayName": "Tuesday", "songName": "", "songArtist": " ", "songLink": ""}, 
-    { "dayName": "Wednesday", "songName": "", "songArtist": " ", "songLink": ""}, 
-    { "dayName": "Thursday", "songName": "", "songArtist": " ", "songLink": ""},
-    { "dayName": "Friday", "songName": "", "songArtist": " ", "songLink": ""}
+    {"dayName": "Monday", "songName": "", "songArtist": " ", "songLink": "", "image":""},
+    { "dayName": "Tuesday", "songName": "", "songArtist": " ", "songLink": "", "image": ""}, 
+    { "dayName": "Wednesday", "songName": "", "songArtist": " ", "songLink": "", "image": ""}, 
+    { "dayName": "Thursday", "songName": "", "songArtist": " ", "songLink": "", "image": ""},
+    { "dayName": "Friday", "songName": "", "songArtist": " ", "songLink": "", "image":""}
   ]);
-  const token = "BQABKIsUyoZpLd7OnnCfURugU71ywpK1atnf5zufl1c-JnGitzABmRUEWefnhtzTNEpaOFqYFnaBGphyqFw_Xv-djcfyMqoi71qzPsYiLr5XyDd6XbX1L62dQK-Gq_3tOghwJv7zbght1XExpDebZQxb2EAeZZiJmlp2DzMiIu2zEDi6go4a60Dp0oA";
+  const token = "BQCSF2VCPUokiRLh4z4S1plgKY_BkYXjHhlaBOEqGtC0rhbFZ9-eHMQ3fT1aimASFMv1TXXTh0T4k3SuYWcDHCISf0lBkcWjtXft4g4lUcPFsDXme2lhMIxAYtZhRXSGbA_XhjjT1RWATQTld3m95VMnAqd_IYTgU17PTJWax9Afr_RuF43TS7nMLR4";
   loadCookies(); 
 
   function loadCookies() {
     let x = document.cookie; 
     console.log(x); 
+    if (x == null){
+      return; 
+    }
     let decodeCookie = decodeURIComponent(x); 
     let splitCookie = decodeCookie.split(";"); 
     let cookieDict = getCookieDict(splitCookie); 
@@ -33,7 +36,7 @@ function App() {
         let info = cookieDict[weekday];
         console.log(info);  
         el.songLink = info['songLink']; 
-
+        el.image = info['image']; 
         el.songName = info['songName'] + "-" + info['songArtist']; 
       }
        
@@ -89,6 +92,7 @@ function genSong(word, dayToday) {
         dayName: dayToday,
         songName: curTrack.name,
         songArtist: curTrack.artists[0].name,
+        image: curTrack.album.images[0].url,
         songLink: curTrack.external_urls.spotify,
       };
       document.cookie = dayToday + "=" + JSON.stringify(curTrackJson);
@@ -126,7 +130,7 @@ function genSong(word, dayToday) {
               <a href = {day[0].songLink}>SongLink</a><br/>
               </Card.Text>
             </Card.Body>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src={day[0].image} />
           </Card>
           
           <Card class = 'cards' style={{ width: '15rem' }}>
@@ -135,10 +139,10 @@ function genSong(word, dayToday) {
               <Card.Text>
               {day[1].songName}<br/>
               {day[1].songArtist}<br/>
-              <a href = {day[1].songLink}><img src = 'images/spotifyCode.jpg'/></a><br/>
+              <a href = {day[1].songLink}>SongLink</a><br/>
               </Card.Text>
             </Card.Body>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src={day[1].image} />
           </Card>
 
           <Card class = 'cards' style={{ width: '15rem' }}>
@@ -150,7 +154,7 @@ function genSong(word, dayToday) {
                 <a href = {day[2].songLink}>SongLink</a><br/>
               </Card.Text>
             </Card.Body>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src={day[2].image} />
           </Card>
 
           <Card class = 'cards' style={{ width: '15rem' }}>
@@ -162,7 +166,7 @@ function genSong(word, dayToday) {
                 <a href = {day[3].songLink}>SongLink</a><br/>
               </Card.Text>
             </Card.Body>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src={day[3].image} />
           </Card>
 
           <Card class = 'cards' style={{ width: '15rem' }}>
@@ -174,7 +178,7 @@ function genSong(word, dayToday) {
               <a href = {day[4].songLink}>SongLink</a><br/>
               </Card.Text>
             </Card.Body>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src={day[4].image} />
           </Card>
         </Row>
         <div className = "bottomRow"> 
